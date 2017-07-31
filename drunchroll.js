@@ -11,12 +11,10 @@ const pickItem = items => items[Math.floor(Math.random() * items.length)];
 
 const drunchroll = {
     command: 'drunchroll',
-    callback: (reply, message) => {
+    callback: function(reply, message) {
         fetch('https://pizza-online.fi/ravintolat/helsinki/drunch')
-        .then(res => {
-            return res.text();
-        })
-        .then(body => {
+        .then(res => res.text())
+        .then(function(body) { // no arrow func because of scoping issue
             const items = findItems(body);
             const picked = pickItem(items);
             reply(message, picked);
