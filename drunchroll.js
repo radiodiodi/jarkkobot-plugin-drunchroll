@@ -17,7 +17,10 @@ const drunchroll = {
         .then(function(body) { // no arrow func because of scoping issue
             const items = findItems(body);
             const picked = pickItem(items);
-            reply(message, picked);
+            const msg = message;
+            console.log('message object:');
+            console.dir(msg);
+            reply(msg, picked);
         })
         .catch(err => {
             const error = `Virhe: ${err}`;
