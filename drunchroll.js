@@ -14,14 +14,14 @@ const drunchroll = {
     callback: function(reply, message) {
         fetch('https://pizza-online.fi/ravintolat/helsinki/drunch')
         .then(res => res.text())
-        .then(function(body) { // no arrow func because of scoping issue
-            const items = findItems(body);
-            const picked = pickItem(items);
-            const msg = message;
-            console.log('message object:');
-            console.dir(msg);
-            reply(msg, picked);
-        })
+        .then((msg =>
+            function(body) { // vitun closuret
+              const items = findItems(body);
+              const picked = pickItem(items);
+              reply(msg, picked);
+            }
+          )(message)
+        )
         .catch(err => {
             const error = `Virhe: ${err}`;
             console.error(error);
