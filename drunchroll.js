@@ -10,6 +10,8 @@ const findItems = body => {
 const pickItem = items => items[Math.floor(Math.random() * items.length)];
 
 const drunchroll = {
+    name: 'drunchroll',
+    description: 'Anna onnettaren päättää päivän muonat',
     command: 'drunchroll',
     callback: function(reply, message) {
         fetch('https://pizza-online.fi/ravintolat/helsinki/drunch')
